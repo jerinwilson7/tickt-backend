@@ -1,8 +1,10 @@
+import { FIREBASE_SERVICE_ACCOUNT } from "../../constants";
+
 const admin = require("firebase-admin");
-const serviceAccount = require("./admin-sdk.json");
+const serviceAccountString = atob(FIREBASE_SERVICE_ACCOUNT?.toString() ?? "");
 
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
+  credential: admin.credential.cert(JSON.parse(serviceAccountString)),
 });
 
 export default admin

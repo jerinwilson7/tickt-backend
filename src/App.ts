@@ -1,15 +1,15 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import bodyParser from "body-parser";
 import compression from "compression";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import dotenv from "dotenv";
 import express, { ErrorRequestHandler } from "express";
 import createHttpError from "http-errors";
 import morgan from "morgan";
 import { connectDatabase } from "./db/connection/connection";
 import router from "./routes";
-
-dotenv.config();
 
 const port = process.env.PORT;
 
@@ -20,7 +20,6 @@ app.use(
     credentials: true,
   })
 );
-
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(compression());
@@ -45,7 +44,7 @@ const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
 
 app.use(errorHandler);
 
-connectDatabase()
+connectDatabase();
 
 app.listen(port, () => {
   console.log(`Server is running on the port ${port}`);

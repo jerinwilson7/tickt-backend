@@ -30,27 +30,7 @@ jobs:
           echo "Error: .env file is empty or invalid."
           exit 1
         fi
-
-    - name: Create firebase admin sdk
-      run: |
-        if [ ! -f src/db/firebase/admin-sdk.json ]; then
-          touch src/db/firebase/admin-sdk.json
-          echo "${{secrets.FIREBASE_ADMIN_SDK}}" > src/db/firebase/admin-sdk.json
-        else
-          echo "admin-sdk.json already exists"
-        fi
-
-    - name: Validate admin-sdk.json
-      run: |
-        if [ -z "$(cat src/db/firebase/admin-sdk.json)" ]; then
-          echo "Error: admin-sdk.json file is empty or invalid."
-          exit 1
-        fi
-
-    - name: Check if admin-sdk.json exists and its permissions
-      run: ls -l src/db/firebase/admin-sdk.json
     
-
     - name: Login to Docker Hub
       env:
          DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
