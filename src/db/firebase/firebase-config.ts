@@ -1,6 +1,6 @@
 import { FIREBASE_SERVICE_ACCOUNT } from "../../constants";
 import * as admin from 'firebase-admin'
-const serviceAccountString = atob(FIREBASE_SERVICE_ACCOUNT?.toString() ?? "");
+export const serviceAccountString = atob(FIREBASE_SERVICE_ACCOUNT?.toString() ?? "");
 
 admin.initializeApp({
   credential: admin.credential.cert(JSON.parse(serviceAccountString)),
