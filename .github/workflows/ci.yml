@@ -59,3 +59,21 @@ jobs:
 
     - name: Push the image to Docker Hub
       run: docker push jerinwilson/tickt-server:latest
+
+
+     # deployment
+  
+  deploy:
+    needs: build
+    runs-on: self-hosted
+
+    steps:
+
+    - name: Pull the docker image from DockerHub
+      run: sudo docker pull jerinwilson/tickt-server:latest
+
+    - name: Delete old docker container
+      run: sudo docker rm -f tickt-server-container || true
+
+    - name: Run docker container with latest image
+      run: sudo docker run -d -p 8080:8080 --name tickt-server-container jerinwilson/tickt-server:latest
