@@ -58,11 +58,8 @@ jobs:
     - name: Delete old docker container
       run: sudo docker rm -f tickt-server-container || true
 
-    # - name: Run docker container with latest image
-    #   run: sudo docker run -d -p 8080:8080 --name tickt-server-container jerinwilson/tickt-server:latest
-
-      - name: Run docker container with latest image
-        run: |
-           sudo docker run -d -p 8080:8080 --name tickt-server-container \
-           --env-file .env \
-           jerinwilson/tickt-server:latest
+    - name: Run docker container with latest image
+      run: |
+        sudo docker run -d -p 8080:8080 --name tickt-server-container \
+        --env-file .env \
+        jerinwilson/tickt-server:latest
