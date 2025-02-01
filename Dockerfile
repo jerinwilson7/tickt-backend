@@ -24,6 +24,9 @@ RUN npm ci --only=production
 
 COPY --from=build /app/build ./build
 
+COPY src/db/firebase/admin-sdk.json /app/src/db/firebase/admin-sdk.json
+
+
 EXPOSE 8080
 
 CMD ["node", "build/App.js"]
