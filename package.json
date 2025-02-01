@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "ts-node-dev --poll ./src/App.ts",
     "build": "rimraf ./build && tsc",
-    "start": "node build/app.js",
+    "start": "node build/App.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
