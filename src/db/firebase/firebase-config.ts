@@ -1,15 +1,13 @@
 
-import { FIREBASE_SERVICE_ACCOUNT } from "../../constants";
 import * as admin from "firebase-admin";
+import { FIREBASE_SERVICE_ACCOUNT } from "../../constants";
 
-if (!FIREBASE_SERVICE_ACCOUNT) {
-  throw new Error("FIREBASE_SERVICE_ACCOUNT is not defined.");
-}
+const ser = process.env.FIREBASE_SERVICE_ACCOUNT!
 
 try {
   console.log("FIREBASE_SERVICE_ACCOUNT:", FIREBASE_SERVICE_ACCOUNT);
 
-  const serviceAccountString = atob(FIREBASE_SERVICE_ACCOUNT.toString());
+  const serviceAccountString = atob(ser.toString());
   console.log("Decoded serviceAccountString:", serviceAccountString);
 
   const serviceAccount = JSON.parse(serviceAccountString);
