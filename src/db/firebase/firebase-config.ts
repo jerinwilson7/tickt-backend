@@ -3,7 +3,7 @@ import { FIREBASE_SERVICE_ACCOUNT } from "../../constants";
 
 const serviceAccountString = atob(FIREBASE_SERVICE_ACCOUNT?.toString() ?? "");
 
-console.log("port :",process.env.FIREBASE_SERVICE_PORT)
+console.log("PORT :",process.env.FIREBASE_SERVICE_PORT)
 console.log("env :",process.env.FIREBASE_SERVICE_ACCOUNT)
 console.log("12345 :",FIREBASE_SERVICE_ACCOUNT)
 console.log("SERCICE :",serviceAccountString)
