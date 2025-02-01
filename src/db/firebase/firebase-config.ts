@@ -1,6 +1,5 @@
 import { FIREBASE_SERVICE_ACCOUNT } from "../../constants";
-
-const admin = require("firebase-admin");
+import * as admin from 'firebase-admin'
 const serviceAccountString = atob(FIREBASE_SERVICE_ACCOUNT?.toString() ?? "");
 
 admin.initializeApp({
