@@ -58,5 +58,9 @@ jobs:
     - name: Delete old docker container
       run: sudo docker rm -f tickt-server-container || true
 
+    - name: Create .env file in the container
+      run: |
+        sudo docker exec tickt-server-container sh -c 'echo "${{secrets.PROD_ENV_FILE}}" > /app/.env'  
+
     - name: Run docker container with latest image
       run: sudo docker run -d -p 8080:8080 --name tickt-server-container jerinwilson/tickt-server:latest
