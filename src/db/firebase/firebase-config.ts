@@ -3,6 +3,8 @@ import { FIREBASE_SERVICE_ACCOUNT } from "../../constants";
 
 const serviceAccountString = atob(FIREBASE_SERVICE_ACCOUNT?.toString() ?? "");
 
+console.log("env :",process.env.FIREBASE_SERVICE_ACCOUNT)
+console.log("12345 :",FIREBASE_SERVICE_ACCOUNT)
 console.log("SERCICE :",serviceAccountString)
 
 if (!admin.apps.length) {
