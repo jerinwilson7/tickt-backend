@@ -31,10 +31,15 @@ jobs:
           exit 1
         fi
 
+    # - name: Export Environment Variables
+    #   run:
+    #     export $(grep -v '^#' .env | xargs)
+    #     cat .env | while read line; do echo "$line" >> GITHUB_ENV; done    
+
     - name: Export Environment Variables
-      run:
-        export $(grep -v '^#' .env | xargs)
-        cat .env | while read line; do echo "$line" >> GITHUB_ENV; done    
+      run: |
+        cat .env | while IFS= read -r line; do echo "$line" >> $GITHUB_ENV; done
+
     
     - name: Login to Docker Hub
       env:
