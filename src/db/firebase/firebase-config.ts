@@ -3,9 +3,9 @@ import { FIREBASE_SERVICE_ACCOUNT } from "../../constants";
 
 const serviceAccountString = atob(FIREBASE_SERVICE_ACCOUNT?.toString() ?? "");
 
-console.log("PORT :",process.env.FIREBASE_SERVICE_PORT)
+console.log("MONGO :",process.env.MONGO_URI)
 console.log("env :",process.env.FIREBASE_SERVICE_ACCOUNT)
-console.log("12345 :",FIREBASE_SERVICE_ACCOUNT)
+console.log("PORT :",process.env.PORT)
 console.log("SERCICE :",serviceAccountString)
 
 if (!admin.apps.length) {
