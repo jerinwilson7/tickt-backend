@@ -30,6 +30,11 @@ jobs:
           echo "Error: .env file is empty or invalid."
           exit 1
         fi
+
+    - name: Export Environment Variables
+      run:
+        export $(grep -v '^#' .env | xargs)
+        cat .env | while read line; do echo "$line" >> GITHUB_ENV; done    
     
     - name: Login to Docker Hub
       env:
@@ -38,7 +43,10 @@ jobs:
       run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
     - name: Build the Docker image
-      run: docker build -t jerinwilson/tickt-server .
+      run: |
+       docker build \
+       $(cat .env | sed 's/^/--build-arg /') \
+       -t jerinwilson/tickt-server .
 
     - name: Push the image to Docker Hub
       run: docker push jerinwilson/tickt-server:latest
@@ -60,6 +68,4 @@ jobs:
 
     - name: Run docker container with latest image
       run: |
-        sudo docker run -d -p 8080:8080 --name tickt-server-container \
-        --env-file .env \
-        jerinwilson/tickt-server:latest
+        sudo docker run -d -p 8080:8080 --name tickt-server-container jerinwilson/tickt-server:latest
