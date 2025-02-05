@@ -46,8 +46,6 @@ app.use(errorHandler);
 
 connectDatabase();
 
-console.log("MONGO URI :",process.env.MONGO_URI)
-
 app.listen(port, () => {
   console.log(`Server is running on the port ${port}`);
 });

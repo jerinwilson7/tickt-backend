@@ -1,6 +1,6 @@
 import express from 'express';
-import admin from '../../db/firebase/firebase-config';
 import { createUser, getUserByEmail, getUserByUid } from '../../db';
+import admin from '../../db/firebase/firebase-config';
 
 export const register = async (req: express.Request, res: express.Response) => {
   try {
@@ -35,13 +35,13 @@ export const login = async(req:express.Request,res:express.Response)=>{
 
     try {
         
-        const {uid,idToken} = req.body
-    
-        if(!uid || !idToken){
+        const {uid,token,email} = req.body
+
+        if(!uid || !token){
             return res.status(400).json({message:'uid and id token are required for authentication'})
         }
     
-        const decodedToken = await admin.auth().verifyIdToken(idToken)
+        const decodedToken = await admin.auth().verifyIdToken(token)
     
         if(decodedToken.uid !== uid){
             return res.status(400).json({message:'invalid token or uid mismatch'})
@@ -63,6 +63,5 @@ export const login = async(req:express.Request,res:express.Response)=>{
 
         })
     }
-
 
 }
