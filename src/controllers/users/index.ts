@@ -10,7 +10,7 @@ export const getUsers = async (req: express.Request, res: express.Response) => {
 
     return res
       .status(200)
-      .json({ message: "users fetched successfully the users are", data: users });
+      .json({ message: "users fetched successfully", data: users });
   } catch (error) {
     console.log("error occurred while fetching users :", error);
     return res
