@@ -1,6 +1,7 @@
 import express from 'express'
-import { createOrder } from '../../controllers'
+import { createOrder, placeOrder } from '../../controllers'
 
 export default (router:express.Router)=>{
     router.post('/orders/create-order',createOrder)
+    router.post('/orders/place-order',placeOrder)
 }
